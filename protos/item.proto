@@ -1,0 +1,39 @@
+syntax = "proto3";
+package item;
+
+//server definition
+
+service ItemService{
+    rpc listItems(Empty) returns (ItemList){}
+    rpc readItem(ItemId) returns (Item){}
+    rpc createItem(newItem) returns (result){}
+    rpc updateItem(Empty) returns (result){}
+    rpc deleteItem(Empty) returns (result){}
+}
+
+//message type definitions 
+
+message Empty{}
+
+message ItemList{
+    repeated Item items = 1; 
+}
+
+message ItemId{
+    int32 id = 1;
+}
+
+message Item {
+    int32 id = 1;
+    string name = 2;
+    string price = 3;
+}
+
+message newItem {
+    string name = 1;
+    string price = 2;
+}
+
+message result {
+    string status = 1;
+}
